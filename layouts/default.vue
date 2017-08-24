@@ -1,53 +1,173 @@
 <template>
-  <div>
-    <nuxt/>
+  <div id="app">
+    <header class="header">
+      <h1>Kevin Restaino</h1>
+      <app-nav></app-nav>
+    </header>
+    <section class="route">
+      <nuxt/>
+    </section>
+    <footer class="footer">
+      <span>© {{ currentYear }} Kevin Restaino. All rights reserved.</span>
+    </footer>
   </div>
 </template>
 
-<style>
-html
-{
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
+<script>
+import AppNav from '~/components/AppNav'
+
+export default {
+  components: {
+    AppNav
+  },
+  computed: {
+    currentYear () {
+      return new Date().getFullYear()
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+html {
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: #666;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 36px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
 }
-*, *:before, *:after
-{
-  box-sizing: border-box;
-  margin: 0;
+
+#app {
+  margin: auto;
+  max-width: 800px;
 }
-.button--green
-{
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+
+a {
+  color: #888;
   text-decoration: none;
-  padding: 10px 30px;
 }
-.button--green:hover
-{
-  color: #fff;
-  background-color: #3b8070;
+
+h1 {
+  font-size: 28px;
+  font-weight: 100;
+  text-align: center;
 }
-.button--grey
-{
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
+
+.button {
+  background-color: #ddd;
+  border-radius: 3px;
+  padding: 8px 16px;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #ccc;
+    color: #666;
+  }
 }
-.button--grey:hover
-{
-  color: #fff;
-  background-color: #35495e;
+
+.lazy {
+  position: relative;
+  transition: 1s;
+
+  img {
+    display: block;
+    height: auto;
+    opacity: 0;
+    width: 100%;
+  }
+
+  &.loading {
+    .spinner {
+      opacity: 1;
+    }
+  }
+
+  &.loaded {
+    opacity: 1;
+
+    .spinner {
+      opacity: 0;
+      transition: none;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+}
+
+.spinner,
+.spinner:after {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #aaa;
+  animation: spin 1.1s infinite linear;
+  left: 50%;
+  margin: -20px;
+  position: absolute;
+  top: 50%;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 24px;
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+
+  span {
+    color: #bbb;
+    font-size: 14px;
+  }
+}
+
+// @import 'scss/_ie11.scss'
+
+.lazy {
+  background-color: #ddd;
+
+  img {
+    backface-visibility: hidden;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+    width: 100%;
+
+    &[lazy=loaded] {
+      opacity: 1;
+    }
+  }
 }
 </style>

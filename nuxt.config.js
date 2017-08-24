@@ -1,7 +1,24 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
+  // Build configuration
+  build: {
+    // Run ESLINT on save
+    extend (config, ctx) {
+      if (ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+  },
+
+  css: [
+    'normalize.css/normalize.css'
+  ],
+
+  // Headers of the page
   head: {
     title: 'portfolio',
     meta: [
@@ -13,26 +30,11 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** Run ESLINT on save
-    */
-    extend (config, ctx) {
-      if (ctx.dev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-    }
-  }
+
+  // Customize the progress-bar color
+  loading: { color: '#384D66' },
+
+  plugins: [
+    { src: '~plugins/vue-lazyload', ssr: false }
+  ]
 }

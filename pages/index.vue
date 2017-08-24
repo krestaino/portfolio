@@ -1,59 +1,105 @@
 <template>
-  <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        portfolio
-      </h1>
-      <h2 class="subtitle">
-        Kevin Restaino – Front-end developer
-      </h2>
-      <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div class="work">
+    <ul class="projects">
+      <li v-for="project in projects">
+        <router-link tag="a" :to="`/work/${project.category}/${project.slug}`">
+          <h3>{{ project.title }}</h3>
+          <div class="image-container lazy">
+            <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}_thumb.png`" :srcset="`/work/${project.category}/${project.slug}/${project.slug}_thumb@2x.png 2x`"/>
+            <div class="spinner"></div>
+          </div>
+        </router-link>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
+  computed: {
+    projects () {
+      return this.$store.state.projects
+    }
   }
 }
 </script>
 
-<style>
-.container
-{
-  min-height: 100vh;
+<style scoped lang="scss">
+.projects {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.title
-{
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-.subtitle
-{
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-.links
-{
-  padding-top: 15px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+
+  li {
+    width: 100%;
+
+    & + li {
+      margin-top: 36px;
+    }
+
+    a {
+      display: block;
+      position: relative;
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 28px;
+      font-weight: 100;
+      margin-top: -9px;
+      opacity: 0;
+      padding: 0 16px;
+      position: absolute;
+      text-align: center;
+      transform: translateY(-18px);
+      transition: 0.3s;
+      top: 50%;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .image-container {
+      border-radius: 3px;
+      position: relative;
+
+      &::after {
+        background-color: rgba(0,0,0,0);
+        border-radius: inherit;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: 0.3s;
+        width: 100%;
+      }
+    }
+
+    img {
+      display: block;
+      height: 100%;
+      height: 450px;
+
+      &[lazy="loaded"] {
+        box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.25);
+
+        & + .spinner {
+          display: none;
+        }
+      }
+    }
+
+    a:hover {
+      h3 {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .image-container::after {
+        background-color: rgba(0,0,0,0.85);
+      }
+    }
+  }
 }
 </style>
