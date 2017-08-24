@@ -156,7 +156,7 @@ h1 {
 // @import 'scss/_ie11.scss'
 
 .lazy {
-  background-color: #ddd;
+  background-image: url(~/static/images/transp_bg.png);
 
   img {
     backface-visibility: hidden;
