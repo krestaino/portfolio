@@ -20,14 +20,18 @@
     </div>
     <nav>
       <div class="container">
-        <nuxt-link class="button" tag="a" :to="`/work/${previousProject.category}/${previousProject.slug}`" v-if="previousProject.slug">Previous Project</nuxt-link>
-        <span>{{ project.title }}</span>
-        <nuxt-link class="button" tag="a" :to="`/work/${nextProject.category}/${nextProject.slug}`" v-if="nextProject.slug">Next Project</nuxt-link>
+        <div>
+          <span>{{ project.title }}</span>
+        </div>
+        <div>
+          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub Repo</a>
+          <a class="button" target="_blank" :href="project.url">Live Site</a>
+        </div>
       </div>
     </nav>
     <ul class="image">
       <li class="lazy" v-for="n in project.imageListLength">
-        <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}-${n}.png`" :data-srcset="`/work/${project.category}/${project.slug}/${project.slug}-${n}@2x.png 2x`">
+        <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}-${n}@2x.png`"/>
         <div class="spinner"></div>
       </li>
     </ul>
@@ -35,6 +39,8 @@
 </template>
 
 <script>
+import inView from 'in-view'
+
 export default {
   data () {
     return {
@@ -78,35 +84,44 @@ export default {
       } else {
         this.nextProject = {}
       }
+    },
+    projectNav () {
+      let nav = document.querySelector('.project nav')
+
+      inView('.project .details')
+        .on('enter', el => {
+          nav.classList.remove('visible')
+        })
+        .on('exit', el => {
+          nav.classList.add('visible')
+        })
+      inView.offset(-50)
     }
   },
   mounted () {
     this.getProjects()
+    this.projectNav()
   }
 }
 </script>
 
 <style scoped lang="scss">
 nav {
-  margin-top: 16px;
+  background-color: #f1f1f1;
+  box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.35);
+  left: 0;
   padding: 8px 0;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100px);
+  transition: 0.5s;
+  visibility: hidden;
   width: 100%;
   z-index: 10;
 
   &.visible {
-    background-color: #f1f1f1;
-    box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.35);
-    left: 0;
-    margin-top: 0;
-    position: fixed;
-    top: -100px;
-    transform: translateY(100px);
-    transition: transform 1s;
-
-    span {
-      display: block;
-    }
+    transform: translateY(0);
+    visibility: visible;
   }
   
   .container {
@@ -116,17 +131,20 @@ nav {
     margin: 0 auto;
     max-width: 800px;
     width: inherit;
+
+    > div {
+      display: flex;
+
+      a + a {
+        margin-left: 8px;
+      }
+    }
   }
 
   span {
-    display: none;
     font-size: 14px;
     font-weight: bold;
   }
-}
-
-.project {
-  position: relative;
 }
 
 .details {
@@ -135,13 +153,13 @@ nav {
   flex-direction: column;
 
   .row {
-    align-items: flex-end;
+    align-items: center;
     display: flex;
     justify-content: space-between;
     width: 100%;
 
     & + .row {
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .col {
@@ -155,8 +173,12 @@ nav {
   }
 
   h2 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
+  }
+
+  p {
+    margin: 0;
   }
 
   .button {
@@ -169,7 +191,7 @@ nav {
 .image {
   box-shadow: 0px 0px 36px 0px rgba(0,0,0,0.25);
   list-style: none;
-  margin: 80px auto 0;
+  margin: 32px auto 0;
   max-width: 1000px;
   padding: 0;
 

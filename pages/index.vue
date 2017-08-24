@@ -5,7 +5,7 @@
         <router-link tag="a" :to="`/work/${project.category}/${project.slug}`">
           <h3>{{ project.title }}</h3>
           <div class="image-container lazy">
-            <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}_thumb.png`" :srcset="`/work/${project.category}/${project.slug}/${project.slug}_thumb@2x.png 2x`"/>
+            <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}_thumb@2x.png`"/>
             <div class="spinner"></div>
           </div>
         </router-link>
