@@ -49,6 +49,11 @@ export default {
       nextProject: {}
     }
   },
+  head () {
+    return {
+      titleTemplate: `${this.project.title} | %s`
+    }
+  },
   methods: {
     getProjects () {
       let result = this.$store.state.projects.filter((obj) => {

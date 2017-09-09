@@ -17,6 +17,11 @@ export default {
     jobs () {
       return this.$store.state.jobs
     }
+  },
+  head () {
+    return {
+      titleTemplate: `Experience | %s`
+    }
   }
 }
 </script>
