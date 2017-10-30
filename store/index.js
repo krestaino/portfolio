@@ -78,7 +78,7 @@ const store = () => new Vuex.Store({
         slug: 'nuepress',
         title: 'NuePress – Personal Project',
         url: 'https://nuepress.kmr.io',
-        description: 'This project was to explore <a href="https://nuxtjs.org/" rel="noopener" target="_blank">Nuxt.js</a>. I designed and built the application that communicates with a WordPress install on separate domain name using the <a href="https://developer.wordpress.org/rest-api/" rel="noopener" target="_blank">WordPress REST API</a>.',
+        description: 'This project was to explore <a href="https://nuxtjs.org/" rel="noopener" target="_blank">Nuxt.js</a>. I designed and built the application that communicates with a WordPress install on separate domain name using the <a href="https://developer.wordpress.org/rest-api/" rel="noopener" target="_blank">WordPress REST API</a>. NuePress is currently in active development.',
         tech: 'Nuxt.js, SCSS'
       },
       {
