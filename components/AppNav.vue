@@ -16,6 +16,8 @@
 
   a {
     border-bottom: 1px solid transparent;
+    color: #888;
+    font-weight: 300;
     transition: 0.3s;
 
     &:hover {

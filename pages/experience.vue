@@ -47,7 +47,7 @@ export default {
   }
 
   .location {
-    color: #aaa;
+    color: #888;
   }
 }
 </style>

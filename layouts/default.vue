@@ -56,8 +56,15 @@ body {
 }
 
 a {
-  color: #888;
+  border-bottom: 1px solid transparent;
+  color: #444;
+  font-weight: 400;
   text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    border-color: inherit;
+  }
 }
 
 h1 {
@@ -72,12 +79,15 @@ h1, h2, h3 {
 
 .button {
   align-items: center;
+  border-bottom: 0;
   background-color: #ddd;
   border-radius: 3px;
+  color: #777;
   display: flex;
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 600;
+  text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s;
 
