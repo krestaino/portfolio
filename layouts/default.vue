@@ -8,7 +8,7 @@
       <nuxt/>
     </section>
     <footer class="footer">
-      <span>© {{ currentYear }} Kevin Restaino. All rights reserved.</span>
+      <span>© {{ currentYear }} Kevin Restaino.<br>All copyrights belong to their respective owners.</span>
     </footer>
   </div>
 </template>
@@ -170,6 +170,7 @@ h1, h2, h3 {
   display: flex;
   justify-content: center;
   margin-top: 36px;
+  text-align: center;
 
   span {
     color: #bbb;
