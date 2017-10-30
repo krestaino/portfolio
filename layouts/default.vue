@@ -66,11 +66,17 @@ h1 {
   text-align: center;
 }
 
+h1, h2, h3 {
+  font-family: 'Roboto Slab', serif;
+}
+
 .button {
   background-color: #ddd;
   border-radius: 3px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
   transition: 0.3s;
 
   &:hover {
@@ -152,8 +158,6 @@ h1 {
     font-size: 14px;
   }
 }
-
-// @import 'scss/_ie11.scss'
 
 .lazy {
   background-image: url(~/static/images/transp_bg.png);

@@ -35,6 +35,7 @@ module.exports = {
   loading: { color: '#384D66' },
 
   plugins: [
-    { src: '~plugins/vue-lazyload', ssr: false }
+    { src: '~plugins/vue-lazyload', ssr: false },
+    { src: '~plugins/web-font-loader', ssr: false }
   ]
 }

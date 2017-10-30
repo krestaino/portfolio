@@ -30,6 +30,7 @@
     "normalize.css": "^7.0.0",
     "sass-loader": "^6.0.6",
     "vue-lazyload": "^1.0.6",
+    "webfontloader": "^1.6.28",
     "webpack": "^3.5.5"
   }
 }

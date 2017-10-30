@@ -37,6 +37,7 @@ export default {
   }
 
   .title {
+    font-family: 'Roboto Slab', serif;
     font-weight: 400;
   }
 
