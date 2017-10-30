@@ -8,13 +8,16 @@
           </div>
         </div>
         <div class="col buttons">
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
-          <a class="button" target="_blank" :href="project.url">Live Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
+          <a class="button" target="_blank" :href="project.github" v-if="project.github">
+            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubResponse.stargazers_count">(&#9733;{{ githubResponse.stargazers_count }})</span>
+          </a>
+          <a class="button" target="_blank" :href="project.url"  v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <p>{{ project.description }}</p>
+          <p v-html="project.description"></p>
+          <p><em>{{ project.tech }}</em></p>
         </div>
       </div>
     </div>
@@ -25,7 +28,7 @@
         </div>
         <div>
           <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
-          <a class="button" target="_blank" :href="project.url">Live Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
+          <a class="button" target="_blank" :href="project.url" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
     </nav>
@@ -44,6 +47,7 @@ import inView from 'in-view'
 export default {
   data () {
     return {
+      githubResponse: {},
       project: {},
       previousProject: {},
       nextProject: {}
@@ -64,7 +68,15 @@ export default {
         if (result[0].category === this.$route.params.category) {
           this.project = result[0]
         }
+
+        if (result[0].githubSlug) {
+          this.getRepo()
+        }
       }
+    },
+    async getRepo () {
+      let response = await this.$axios.$get(`https://api.github.com/repos/krestaino/${this.project.githubSlug}`)
+      this.githubResponse = response
     },
     projectNav () {
       let nav = document.querySelector('.project nav')
@@ -160,11 +172,19 @@ nav {
 
   p {
     margin: 0;
+
+    & + p {
+      margin-top: 16px;
+    }
   }
 
   .button {
     & + .button {
       margin-left: 16px;
+    }
+
+    span {
+      margin-left: 4px;
     }
   }
 }
