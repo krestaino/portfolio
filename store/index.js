@@ -87,7 +87,7 @@ const store = () => new Vuex.Store({
         imageListLength: 2,
         slug: 'lincoln',
         title: 'Lincoln – Shure',
-        description: 'This application is a clone of <a href="https://ga-dev-tools.appspot.com/campaign-url-builder/" rel="noopener" target="_blank">Google\'s Campaign URL Builder</a>, however using a custom domain name (shu.re) to hide the UTM parameters for clean and sharable links with proper tracking. The back-end is using <a href="https://firebase.google.com/" rel="noopener" target="_blank">Firebase</a>, which handles users, authentication, and the database.',
+        description: 'This application is a clone of <a href="https://ga-dev-tools.appspot.com/campaign-url-builder/" rel="noopener" target="_blank">Google\'s Campaign URL Builder</a> using a custom domain name (shu.re) instead of Google\'s (goo.gl). The back-end is powered by <a href="https://firebase.google.com/" rel="noopener" target="_blank">Firebase</a>, which handles users, authentication, and the database.',
         tech: 'Vue.js, Firebase, SCSS'
       },
       {
@@ -125,6 +125,7 @@ const store = () => new Vuex.Store({
       {
         category: 'personal',
         github: 'https://github.com/krestaino/color-con/',
+        githubSlug: 'color-con',
         id: 5,
         imageListLength: 1,
         slug: 'color-con',
