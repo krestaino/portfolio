@@ -55,7 +55,7 @@ export default {
     }
   },
   methods: {
-    getProjects () {
+    getProject () {
       let result = this.$store.state.projects.filter((obj) => {
         return obj.slug === this.$route.params.project
       })
@@ -63,31 +63,7 @@ export default {
       if (result.length) {
         if (result[0].category === this.$route.params.category) {
           this.project = result[0]
-          this.getPreviousProject()
-          this.getNextProject()
         }
-      }
-    },
-    getPreviousProject () {
-      let result = this.$store.state.projects.filter((obj) => {
-        return obj.id === this.project.id - 1
-      })
-
-      if (result.length) {
-        this.previousProject = result[0]
-      } else {
-        this.previousProject = {}
-      }
-    },
-    getNextProject () {
-      let result = this.$store.state.projects.filter((obj) => {
-        return obj.id === this.project.id + 1
-      })
-
-      if (result.length) {
-        this.nextProject = result[0]
-      } else {
-        this.nextProject = {}
       }
     },
     projectNav () {
@@ -104,7 +80,7 @@ export default {
     }
   },
   mounted () {
-    this.getProjects()
+    this.getProject()
     this.projectNav()
   }
 }
