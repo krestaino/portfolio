@@ -8,8 +8,8 @@
           </div>
         </div>
         <div class="col buttons">
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub Repo</a>
-          <a class="button" target="_blank" :href="project.url">Live Site</a>
+          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
+          <a class="button" target="_blank" :href="project.url">Live Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
       <div class="row">
@@ -24,8 +24,8 @@
           <span>{{ project.title }}</span>
         </div>
         <div>
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub Repo</a>
-          <a class="button" target="_blank" :href="project.url">Live Site</a>
+          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
+          <a class="button" target="_blank" :href="project.url">Live Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
     </nav>

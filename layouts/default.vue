@@ -71,8 +71,10 @@ h1, h2, h3 {
 }
 
 .button {
+  align-items: center;
   background-color: #ddd;
   border-radius: 3px;
+  display: flex;
   padding: 8px 16px;
   font-size: 12px;
   font-weight: 600;
@@ -82,6 +84,12 @@ h1, h2, h3 {
   &:hover {
     background-color: #ccc;
     color: #666;
+  }
+
+  img {
+    height: 12px;
+    margin-left: 4px;
+    opacity: 0.5;
   }
 }
 
