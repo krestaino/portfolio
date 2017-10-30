@@ -109,7 +109,7 @@ const store = () => new Vuex.Store({
         slug: 'weather',
         title: 'Weather Vue – Personal Project',
         url: 'https://weather.kmr.io',
-        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the back-end service that comminucates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
+        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the back-end service that communicates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
         tech: 'Vue.js, SCSS'
       },
       {
