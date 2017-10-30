@@ -82,8 +82,20 @@ const store = () => new Vuex.Store({
         tech: 'Nuxt.js, SCSS'
       },
       {
-        category: 'shure',
+        category: 'personal',
+        github: 'https://github.com/krestaino/weather-vue/',
+        githubSlug: 'weather-vue',
         id: 9,
+        imageListLength: 1,
+        slug: 'weather',
+        title: 'Weather Vue – Personal Project',
+        url: 'https://weather.kmr.io',
+        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the back-end service that communicates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
+        tech: 'Vue.js, SCSS'
+      },
+      {
+        category: 'shure',
+        id: 8,
         imageListLength: 2,
         slug: 'lincoln',
         title: 'Lincoln – Shure',
@@ -92,25 +104,13 @@ const store = () => new Vuex.Store({
       },
       {
         category: 'shure',
-        id: 8,
+        id: 7,
         imageListLength: 20,
         slug: 'axient-digital',
         title: 'Axient® Digital – Shure',
         url: 'http://www.shure.com/americas/axient-digital',
         description: 'Product landing page for a new digital wireless system from Shure. The design and content was provided to me from team members. I was responsible for building out the pages, localizing them, and providing deliverables for our other region\'s websites.',
         tech: 'Nunjucks, SCSS, jQuery, Gulp'
-      },
-      {
-        category: 'personal',
-        github: 'https://github.com/krestaino/weather-vue/',
-        githubSlug: 'weather-vue',
-        id: 7,
-        imageListLength: 1,
-        slug: 'weather',
-        title: 'Weather Vue – Personal Project',
-        url: 'https://weather.kmr.io',
-        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the back-end service that communicates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
-        tech: 'Vue.js, SCSS'
       },
       {
         category: 'shure',
