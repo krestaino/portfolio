@@ -69,7 +69,7 @@ a {
 
 h1 {
   font-size: 28px;
-  font-weight: 100;
+  font-weight: 300;
   text-align: center;
 }
 
@@ -86,7 +86,7 @@ h1, h2, h3 {
   display: flex;
   padding: 8px 16px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.3s;

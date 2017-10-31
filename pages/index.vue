@@ -113,6 +113,7 @@ export default {
 
       h3 {
         flex: 1;
+        font-weight: 400;
       }
 
       .button {
