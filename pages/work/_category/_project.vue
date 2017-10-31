@@ -27,7 +27,9 @@
           <span>{{ project.title }}</span>
         </div>
         <div>
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
+          <a class="button" target="_blank" :href="project.github" v-if="project.github">
+            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubResponse.stargazers_count">(&#9733;{{ githubResponse.stargazers_count }})</span>
+          </a>
           <a class="button" target="_blank" :href="project.url" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
@@ -131,7 +133,8 @@ nav {
 
   span {
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 400;
+    margin-left: 4px;
   }
 }
 
