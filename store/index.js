@@ -78,7 +78,7 @@ const store = () => new Vuex.Store({
         slug: 'nuepress',
         title: 'NuePress – Personal Project',
         url: 'https://nuepress.kmr.io',
-        description: 'This project was to explore <a href="https://nuxtjs.org/" rel="noopener" target="_blank">Nuxt.js</a>. I designed and built the application that communicates with a WordPress install on separate domain name using the <a href="https://developer.wordpress.org/rest-api/" rel="noopener" target="_blank">WordPress REST API</a>. NuePress is currently in active development.',
+        description: 'The goal of this project was to explore server-side rendering using <a href="https://nuxtjs.org/" rel="noopener" target="_blank">Nuxt.js</a>. The end product is a decoupled front-end interface using WordPress as the back-end. The Nuxt application uses the <a href="https://developer.wordpress.org/rest-api/" rel="noopener" target="_blank">WordPress REST API</a> to interface with WordPress. NuePress is designed and built by me and is currently in active development.',
         tech: 'Nuxt.js, SCSS'
       },
       {
@@ -90,7 +90,7 @@ const store = () => new Vuex.Store({
         slug: 'weather',
         title: 'Weather Vue – Personal Project',
         url: 'https://weather.kmr.io',
-        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the back-end service that communicates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
+        description: 'This project was to explore <a href="https://vuejs.org/" rel="noopener" target="_blank">Vue.js</a> and <a href="https://expressjs.com/" rel="noopener" target="_blank">Express</a>. I designed and built the client application, along with the <a href="https://github.com/krestaino/weather-api" rel="noopener" target="_blank">back-end service</a> that communicates with Google and <a href="https://darksky.net/dev" rel="noopener" target="_blank">Dark Sky</a> to provide weather and location data.',
         tech: 'Vue.js, SCSS'
       },
       {
@@ -109,7 +109,7 @@ const store = () => new Vuex.Store({
         slug: 'axient-digital',
         title: 'Axient® Digital – Shure',
         url: 'http://www.shure.com/americas/axient-digital',
-        description: 'Product landing page for a new digital wireless system from Shure. The design and content was provided to me from team members. I was responsible for building out the pages, localizing them, and providing deliverables for our other region\'s websites.',
+        description: 'Product landing page for a new digital wireless system from Shure. The design and content was provided to me from team members. I was responsible for building out the pages, localizing them, and providing deliverables for our other region\'s websites. This was one of the first global landing pages we built. I created a <a href="https://github.com/krestaino/fed-up" rel="noopener" target="_blank">build system</a> using Gulp to automate the localization process.',
         tech: 'Nunjucks, SCSS, jQuery, Gulp'
       },
       {
