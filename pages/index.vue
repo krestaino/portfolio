@@ -12,9 +12,9 @@
           </router-link>
           <div class="details">
             <h3>{{ project.title }}</h3>
-            <div>
-              <router-link tag="a" :to="project.github" class="button" target="_blank" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></router-link>
-              <router-link tag="a" :to="project.url" class="button" target="_blank" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></router-link>
+            <div class="buttons">
+              <a :href="project.github" class="button" target="_blank" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
+              <a :href="project.url" class="button" target="_blank" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
               <router-link tag="a" :to="`/work/${project.category}/${project.slug}`" class="button">View Project</router-link>
             </div>
           </div>
@@ -85,6 +85,7 @@ export default {
 
     .image-container {
       overflow: hidden;
+      padding-top: 56.25%;
       position: relative;
 
       &::after {
@@ -102,8 +103,11 @@ export default {
 
     .thumb {
       display: block;
-      height: 100%;
-      height: 450px;
+      // height: 100%;
+      // height: 450px;
+      left: 0;
+      position: absolute;
+      top: 0;
       transition: 0.5s;
 
       &[lazy="loaded"] {
@@ -118,19 +122,46 @@ export default {
       background-color: #fff;
       display: flex;
       justify-content: space-between;
-      padding: 0 16px;
+      padding: 16px;
       width: 100%;
+
+      @media (max-width: 700px) {
+        flex-direction: column;
+      }
 
       h3 {
         flex: 1;
         font-weight: 400;
+        margin: 0 8px;
+
+        @media (max-width: 700px) {
+          margin-bottom: 8px;
+        }
+      }
+
+      .buttons {
+        @media (max-width: 700px) {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
       }
 
       .button {
         display: inline-flex;
 
+        @media (max-width: 700px) {
+          display: flex;
+          justify-content: center;
+        }
+
         & + .button {
           margin-left: 8px;
+
+          @media (max-width: 700px) {
+            margin-left: 0;
+            margin-top: 8px;
+          }
         }
       }
     }
