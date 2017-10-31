@@ -50,12 +50,21 @@ export default {
   }
 
   article {
+    border-radius: 3px;
     box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.25);
+    overflow: hidden;
     width: 100%;
 
     > a {
+      border-bottom: 0;
       display: block;
       position: relative;
+
+      &:hover {
+        img {
+          transform: scale(1.025);
+        }
+      }
     }
 
     .hover-text {
@@ -75,7 +84,7 @@ export default {
     }
 
     .image-container {
-      border-radius: 3px;
+      overflow: hidden;
       position: relative;
 
       &::after {
@@ -95,6 +104,7 @@ export default {
       display: block;
       height: 100%;
       height: 450px;
+      transition: 0.5s;
 
       &[lazy="loaded"] {
         & + .spinner {
@@ -122,17 +132,6 @@ export default {
         & + .button {
           margin-left: 8px;
         }
-      }
-    }
-
-    > a:hover {
-      .hover-text {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .image-container::after {
-        background-color: rgba(0,0,0,0.85);
       }
     }
   }
