@@ -35,7 +35,7 @@
       </div>
     </nav>
     <ul class="image">
-      <li class="lazy" v-for="n in project.imageListLength">
+      <li class="lazy" v-for="(n, index) in project.imageListLength" :style="{ paddingTop: isLast(index) }">
         <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}-${n}@2x.png`"/>
         <div class="spinner"></div>
       </li>
@@ -56,6 +56,15 @@ export default {
     }
   },
   methods: {
+    isLast (index) {
+      if (this.project.lastImageHeight) {
+        if (index === (this.project.imageListLength - 1)) {
+          return this.project.lastImageHeight / 1600 * 100 + '%'
+        }
+      } else {
+        return 900 / 1600 * 100 + '%'
+      }
+    },
     getProject () {
       let result = this.$store.state.projects.filter((obj) => {
         return obj.slug === this.$route.params.project
@@ -153,6 +162,10 @@ nav {
       margin-top: 16px;
     }
 
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
+
     .col {
       display: flex;
       flex-direction: column;
@@ -161,6 +174,10 @@ nav {
       &.buttons {
         flex-direction: row;
         justify-content: flex-end;
+
+        @media (max-width: 650px) {
+          justify-content: flex-start;
+        }
       }
     }
   }
@@ -197,22 +214,20 @@ nav {
   padding: 0;
 
   .lazy {
-    min-height: 450px;
+    // min-height: 450px;
+    padding-top: 56.25%;
+    position: relative;
 
     img {
+      left: 0;
+      position: absolute;
+      top: 0;
+
       &[lazy="loaded"] {
         & + .spinner {
           display: none;
         }
       }
-    }
-
-    &:last-child {
-      min-height: 0;
-    }
-
-    &:first-child {
-      min-height: 450px;
     }
   }
 }
