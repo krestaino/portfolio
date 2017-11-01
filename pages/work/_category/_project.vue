@@ -156,9 +156,11 @@ nav {
     .col {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
       &.buttons {
         flex-direction: row;
+        justify-content: flex-end;
       }
     }
   }
