@@ -29,6 +29,13 @@ export default {
 </script>
 
 <style lang="scss">
+.page-enter-active {
+  transition: opacity .3s;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
+}
+
 html {
   background-color: #f1f1f1;
   box-sizing: border-box;
