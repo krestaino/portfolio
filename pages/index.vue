@@ -103,8 +103,6 @@ export default {
 
     .thumb {
       display: block;
-      // height: 100%;
-      // height: 450px;
       left: 0;
       position: absolute;
       top: 0;
@@ -127,6 +125,7 @@ export default {
 
       @media (max-width: 700px) {
         flex-direction: column;
+        text-align: center;
       }
 
       h3 {
