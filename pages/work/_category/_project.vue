@@ -118,6 +118,10 @@ nav {
   width: 100%;
   z-index: 10;
 
+  @media (max-width: 880px) {
+    padding: 8px 36px;
+  }
+
   &.visible {
     transform: translateY(0);
     visibility: visible;
