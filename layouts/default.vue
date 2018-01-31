@@ -46,6 +46,21 @@ html {
   box-sizing: inherit;
 }
 
+html.wf-active #app {
+  > *  {
+    transition: 0.5s;
+    opacity: 1;
+  }
+
+  > .spinner {
+    display: none;
+  }
+}
+
+#app > * {
+  opacity: 0;
+}
+
 body {
   color: #666;
   font-family: 'Roboto', sans-serif;
