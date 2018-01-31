@@ -36,6 +36,9 @@ module.exports = {
 
   modules: [
     '@nuxtjs/axios',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-93904346-4'
+    }]
   ],
 
   plugins: [
