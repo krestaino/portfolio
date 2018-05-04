@@ -48,7 +48,7 @@ import inView from 'in-view'
 
 export default {
   async asyncData ({ app, store, params }) {
-    let { data } = await app.$axios.get(`http://localhost:1337/project?slug=${params.slug}`)
+    let { data } = await app.$axios.get(`https://portfolio-api.kmr.io/project?slug=${params.slug}`)
     return { project: data[0] }
   },
   data () {

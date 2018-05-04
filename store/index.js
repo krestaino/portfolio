@@ -4,10 +4,10 @@ const store = () => new Vuex.Store({
 
   actions: {
     async nuxtServerInit ({ commit, state }) {
-      let projects = await this.$axios.get('http://localhost:1337/project')
+      let projects = await this.$axios.get('https://portfolio-api.kmr.io/project')
       commit('setProjects', projects.data)
 
-      let jobs = await this.$axios.get('http://localhost:1337/job')
+      let jobs = await this.$axios.get('https://portfolio-api.kmr.io/job')
       commit('setJobs', jobs.data)
     }
   },
