@@ -6,7 +6,7 @@
           <router-link tag="a" :to="`/project/${project.slug}`">
             <span class="hover-text">{{ project.title }}</span>
             <div class="image-container lazy" v-if="project.thumbnail">
-              <img class="thumb" v-lazy="'//localhost:1337/' + project.thumbnail.url"/>
+              <img class="thumb" v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
               <div class="spinner"></div>
             </div>
           </router-link>

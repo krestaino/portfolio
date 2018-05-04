@@ -36,7 +36,7 @@
     </nav>
     <ul class="image">
       <li class="lazy" v-for="(screenshot, index) in screenshots" :key="index">
-        <img v-lazy="'//localhost:1337/' + screenshot.url"/>
+        <img v-lazy="'https://portfolio-api.kmr.io' + screenshot.url"/>
         <div class="spinner"></div>
       </li>
     </ul>
