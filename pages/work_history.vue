@@ -1,10 +1,10 @@
 <template>
   <div class="resume">
     <ul class="jobs">
-      <li v-for="job in jobs">
+      <li v-for="(job, index) in jobs" :key="index">
         <div class="title">{{ job.title }}</div>
         <div class="company">{{ job.company }}</div>
-        <div class="timePeriod">{{ job.timePeriod.from }} – {{ job.timePeriod.to }}</div>
+        <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
         <div class="location">{{ job.location }}</div>
       </li>
     </ul>

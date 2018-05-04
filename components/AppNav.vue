@@ -1,7 +1,7 @@
 <template>
   <div class="app-nav">
     <nuxt-link tag="a" to="/">Projects</nuxt-link>
-    <nuxt-link tag="a" to="/experience">Work History</nuxt-link>
+    <nuxt-link tag="a" to="/work_history">Work History</nuxt-link>
     <a href="https://github.com/krestaino" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/kevinrestaino/" target="_blank">LinkedIn</a>
   </div>

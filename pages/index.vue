@@ -1,21 +1,21 @@
 <template>
-  <div class="work">
+  <div>
     <ul class="projects">
-      <li v-for="project in projects" :key="project.id">
+      <li v-for="project in projects" :key="project.id" v-if="project.id">
         <article>
-          <router-link tag="a" :to="`/work/${project.category}/${project.slug}`">
+          <router-link tag="a" :to="`/project/${project.slug}`">
             <span class="hover-text">{{ project.title }}</span>
-            <div class="image-container lazy">
-              <img class="thumb" v-lazy="`/work/${project.category}/${project.slug}/${project.slug}_thumb@2x.png`"/>
+            <div class="image-container lazy" v-if="project.thumbnail">
+              <img class="thumb" v-lazy="'//localhost:1337/' + project.thumbnail.url"/>
               <div class="spinner"></div>
             </div>
           </router-link>
           <div class="details">
-            <h3>{{ project.title }}</h3>
+            <h3>{{ project.title }} – {{ project.type }}</h3>
             <div class="buttons">
               <a :href="project.github" class="button" target="_blank" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
               <a :href="project.url" class="button" target="_blank" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
-              <router-link tag="a" :to="`/work/${project.category}/${project.slug}`" class="button">View Project</router-link>
+              <router-link tag="a" :to="`/project/${project.slug}`" class="button">View Project</router-link>
             </div>
           </div>
         </article>

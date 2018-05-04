@@ -9,7 +9,7 @@
         </div>
         <div class="col buttons">
           <a class="button" target="_blank" :href="project.github" v-if="project.github">
-            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubResponse.stargazers_count">(&#9733;{{ githubResponse.stargazers_count }})</span>
+            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
           </a>
           <a class="button" target="_blank" :href="project.url"  v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
@@ -28,15 +28,15 @@
         </div>
         <div>
           <a class="button" target="_blank" :href="project.github" v-if="project.github">
-            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubResponse.stargazers_count">(&#9733;{{ githubResponse.stargazers_count }})</span>
+            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
           </a>
           <a class="button" target="_blank" :href="project.url" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
         </div>
       </div>
     </nav>
     <ul class="image">
-      <li class="lazy" v-for="(n, index) in project.imageListLength" :style="{ paddingTop: isLast(index) }">
-        <img v-lazy="`/work/${project.category}/${project.slug}/${project.slug}-${n}@2x.png`"/>
+      <li class="lazy" v-for="(screenshot, index) in screenshots" :key="index">
+        <img v-lazy="'//localhost:1337/' + screenshot.url"/>
         <div class="spinner"></div>
       </li>
     </ul>
@@ -47,42 +47,34 @@
 import inView from 'in-view'
 
 export default {
+  async asyncData ({ app, store, params }) {
+    let { data } = await app.$axios.get(`http://localhost:1337/project?slug=${params.slug}`)
+    return { project: data[0] }
+  },
   data () {
     return {
-      githubResponse: {},
-      project: {},
-      previousProject: {},
-      nextProject: {}
+      githubStars: null,
+      project: null
+    }
+  },
+  computed: {
+    screenshots () {
+      let screenshots = this.project.screenshots
+      screenshots.sort(function (a, b) {
+        return a.name.localeCompare(b.name)
+      })
+      return screenshots
     }
   },
   methods: {
-    isLast (index) {
-      if (this.project.lastImageHeight) {
-        if (index === (this.project.imageListLength - 1)) {
-          return this.project.lastImageHeight / 1600 * 100 + '%'
-        }
-      } else {
-        return 900 / 1600 * 100 + '%'
-      }
-    },
-    getProject () {
-      let result = this.$store.state.projects.filter((obj) => {
-        return obj.slug === this.$route.params.project
-      })
-
-      if (result.length) {
-        if (result[0].category === this.$route.params.category) {
-          this.project = result[0]
-        }
-
-        if (result[0].githubSlug) {
-          this.getRepo()
-        }
-      }
-    },
     async getRepo () {
-      let response = await this.$axios.$get(`https://api.github.com/repos/krestaino/${this.project.githubSlug}`)
-      this.githubResponse = response
+      if (!this.project.github) {
+        return
+      }
+      let parts = this.project.github.split('/')
+      let slug = parts.pop() || parts.pop() // handle potential trailing slash
+      let response = await this.$axios.$get(`https://api.github.com/repos/krestaino/${slug}`)
+      this.githubStars = response.stargazers_count
     },
     projectNav () {
       let nav = document.querySelector('.project nav')
@@ -98,8 +90,8 @@ export default {
     }
   },
   mounted () {
-    this.getProject()
     this.projectNav()
+    this.getRepo()
   }
 }
 </script>
@@ -217,21 +209,11 @@ nav {
   max-width: 1000px;
   padding: 0;
 
-  .lazy {
-    // min-height: 450px;
-    padding-top: 56.25%;
-    position: relative;
+  .lazy img {
+    max-height: 450px;
 
-    img {
-      left: 0;
-      position: absolute;
-      top: 0;
-
-      &[lazy="loaded"] {
-        & + .spinner {
-          display: none;
-        }
-      }
+    &[lazy="loaded"] + .spinner {
+      display: none;
     }
   }
 }
