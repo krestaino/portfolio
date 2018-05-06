@@ -1,20 +1,20 @@
 <template>
   <section>
     <ul v-if="isLoaded">
-      <li v-for="(article, index) in articles" :key="index">
+      <li v-for="(article, index) in sortedArticles" :key="index">
         <article>
-          <router-link :to="`/article/${article.slug}`" v-if="article.image">
+          <router-link :to="`/blog/${article.slug}`" v-if="article.image">
             <figure class="lazy">
               <img v-lazy="'https://portfolio-api.kmr.io' + article.image.url"/>
               <span class="spinner"></span>
             </figure>
           </router-link>
           <div class="details">
-            <router-link :to="`/article/${article.slug}`"><h2>{{ article.title }}</h2></router-link>
+            <router-link :to="`/blog/${article.slug}`"><h2>{{ article.title }}</h2></router-link>
             <p>{{ article.teaserText }}</p>
             <div>
-              <span class="timestamp">{{ formatDate(article.publishAt, 'MM/DD/YYYY') }}</span>
-              <router-link :to="`/article/${article.slug}`" class="button">Read Article</router-link>
+              <span class="timestamp">{{ formatDate(article.publishAt) }}</span>
+              <router-link :to="`/blog/${article.slug}`" class="button">Read Article</router-link>
             </div>
           </div>
         </article>
@@ -38,6 +38,11 @@ export default {
       }
     }
   },
+  computed: {
+    sortedArticles () {
+      return this.articles.slice().sort((a, b) => new Date(b.publishAt) - new Date(a.publishAt))
+    }
+  },
   data () {
     return {
       isLoaded: false,
@@ -51,7 +56,7 @@ export default {
   },
   methods: {
     formatDate (date) {
-      return format(date, 'MM/DD/YYYY h:mm a')
+      return format(date, 'MMM DD, YYYY')
     }
   }
 }

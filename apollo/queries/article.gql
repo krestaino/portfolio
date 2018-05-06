@@ -1,0 +1,12 @@
+query ($slug: String!) {
+  articles(where: {
+    slug: $slug
+  }) {
+    title
+    body
+    image {
+      url
+    }
+    slug
+  }
+}
