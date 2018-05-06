@@ -1,0 +1,11 @@
+{
+  articles {
+    image {
+      url
+    }
+    publishAt
+    teaserText
+    slug
+    title
+  }
+}

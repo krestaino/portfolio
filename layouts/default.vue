@@ -121,7 +121,7 @@ h2 {
   background-color: #ddd;
   border-radius: 3px;
   color: #777;
-  display: flex;
+  display: inline-flex;
   padding: 8px 16px;
   position: relative;
   font-size: 12px;
