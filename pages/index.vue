@@ -1,38 +1,41 @@
 <template>
-  <ul>
-    <li v-for="(project, index) in projects" :key="index">
-      <article>
-        <router-link :to="`/project/${project.slug}`">
-          <figure v-if="project.thumbnail" class="lazy">
-            <img v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
-            <span class="spinner"></span>
-          </figure>
-        </router-link>
-        <div class="details">
-          <h2>{{ project.title }} – {{ project.type }}</h2>
-          <div class="buttons">
-            <a
-              v-if="project.github"
-              :href="'https://github.com/' + project.github"
-              class="button"
-              target="_blank"
-            >
-              GitHub <img src="~/assets/icons/github.svg">
-            </a>
-            <a
-              v-if="project.url"
-              :href="project.url"
-              class="button"
-              target="_blank"
-            >
-              Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg">
-            </a>
-            <router-link :to="`/project/${project.slug}`" class="button">View Project</router-link>
+  <section>
+    <ul v-if="isLoaded">
+      <li v-for="(project, index) in projects" :key="index">
+        <article>
+          <router-link :to="`/project/${project.slug}`">
+            <figure v-if="project.thumbnail" class="lazy">
+              <img v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
+              <span class="spinner"></span>
+            </figure>
+          </router-link>
+          <div class="details">
+            <h2>{{ project.title }} – {{ project.type }}</h2>
+            <div class="buttons">
+              <a
+                v-if="project.github"
+                :href="'https://github.com/' + project.github"
+                class="button"
+                target="_blank"
+              >
+                GitHub <img src="~/assets/icons/github.svg">
+              </a>
+              <a
+                v-if="project.url"
+                :href="project.url"
+                class="button"
+                target="_blank"
+              >
+                Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg">
+              </a>
+              <router-link :to="`/project/${project.slug}`" class="button">View Project</router-link>
+            </div>
           </div>
-        </div>
-      </article>
-    </li>
-  </ul>
+        </article>
+      </li>
+    </ul>
+    <span v-else class="spinner"></span>
+  </section>
 </template>
 
 <script>
@@ -42,11 +45,15 @@ export default {
   apollo: {
     projects: {
       prefetch: true,
-      query: allProjects
+      query: allProjects,
+      result () {
+        this.isLoaded = true
+      }
     }
   },
   data () {
     return {
+      isLoaded: false,
       projects: []
     }
   }

@@ -44,6 +44,7 @@
         </li>
       </ul>
     </div>
+    <span v-else class="spinner"></span>
   </section>
 </template>
 
@@ -59,6 +60,7 @@ export default {
         return { slug: this.$route.params.slug }
       },
       result (data) {
+        this.isLoaded = true
         if (data.data.projects[0].github) {
           this.getRepo()
         }
@@ -67,6 +69,7 @@ export default {
   },
   data () {
     return {
+      isLoaded: false,
       navIsVisible: false,
       githubStars: null,
       projects: []

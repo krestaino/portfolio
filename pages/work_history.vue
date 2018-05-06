@@ -1,12 +1,15 @@
 <template>
-  <ul>
-    <li v-for="(job, index) in jobs" :key="index">
-      <div class="title">{{ job.title }}</div>
-      <div class="company">{{ job.company }}</div>
-      <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
-      <div class="location">{{ job.location }}</div>
-    </li>
-  </ul>
+  <section>
+    <ul v-if="isLoaded">
+      <li v-for="(job, index) in jobs" :key="index">
+        <div class="title">{{ job.title }}</div>
+        <div class="company">{{ job.company }}</div>
+        <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
+        <div class="location">{{ job.location }}</div>
+      </li>
+    </ul>
+    <span v-else class="spinner"></span>
+  </section>
 </template>
 
 <script>
@@ -16,11 +19,15 @@ export default {
   apollo: {
     jobs: {
       prefetch: true,
-      query: allJobs
+      query: allJobs,
+      result () {
+        this.isLoaded = true
+      }
     }
   },
   data () {
     return {
+      isLoaded: false,
       jobs: []
     }
   },
