@@ -1,6 +1,5 @@
 {
   jobs {
-    _id
     title
     company
     from

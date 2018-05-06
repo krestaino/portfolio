@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 nav {
   background-color: #f1f1f1;
   box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.35);

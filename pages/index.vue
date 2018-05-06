@@ -4,7 +4,7 @@
       <li v-for="(project, index) in projects" :key="index">
         <article>
           <router-link :to="`/project/${project.slug}`">
-            <figure v-if="project.thumbnail" class="lazy">
+            <figure class="lazy">
               <img v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
               <span class="spinner"></span>
             </figure>
@@ -60,7 +60,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 ul {
   display: flex;
   flex-wrap: wrap;
