@@ -11,8 +11,8 @@
           <div class="col buttons">
             <a class="button" target="_blank" :href="'https://github.com/' + projects[0].github" v-if="projects[0].github">
               <span>GitHub <img src="~/assets/icons/github.svg"></span>
-              <span v-if="githubStars">(&#9733;{{ githubStars }})</span>
-              <span v-if="!githubStars">(&#9733;<span v-if="!githubStars" class="spinner --inline"></span>)</span>
+              <span v-if="githubStars !== null">(&#9733;{{ githubStars }})</span>
+              <span v-else>(&#9733;<span class="spinner --inline"></span>)</span>
             </a>
             <a class="button" target="_blank" :href="projects[0].url"  v-if="projects[0].url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
           </div>
@@ -38,7 +38,7 @@
         </div>
       </nav>
       <ul class="image">
-        <li class="lazy" v-for="(screenshot, index) in screenshotListSortedByFilename" :key="index">
+        <li class="lazy" v-for="(screenshot, index) in sortedScreenshots" :key="index">
           <img v-lazy="'https://portfolio-api.kmr.io' + screenshot.url"/>
           <div class="spinner"></div>
         </li>
@@ -81,11 +81,8 @@ export default {
         return `${this.projects[0].title} – ${this.projects[0].type} | %s`
       }
     },
-    screenshotListSortedByFilename () {
-      let arr = []; arr.push(...this.projects[0].screenshots)
-      return arr.sort((a, b) => {
-        return a.name.localeCompare(b.name)
-      })
+    sortedScreenshots () {
+      return this.projects[0].screenshots.slice().sort((a, b) => a.name.localeCompare(b.name))
     }
   },
   head () {
