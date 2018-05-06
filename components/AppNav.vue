@@ -1,14 +1,14 @@
 <template>
-  <div class="app-nav">
-    <nuxt-link tag="a" to="/">Projects</nuxt-link>
-    <nuxt-link tag="a" to="/work_history">Work History</nuxt-link>
+  <nav>
+    <nuxt-link to="/">Projects</nuxt-link>
+    <nuxt-link to="/work">Work History</nuxt-link>
     <a href="https://github.com/krestaino" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/kevinrestaino/" target="_blank">LinkedIn</a>
-  </div>
+  </nav>
 </template>
 
-<style scoped lang="scss">
-.app-nav {
+<style lang="scss" scoped>
+nav {
   align-items: center;
   display: flex;
   justify-content: center;
