@@ -46,17 +46,6 @@ html {
   box-sizing: inherit;
 }
 
-html.wf-active #app {
-  > *  {
-    transition: 0.5s;
-    opacity: 1;
-  }
-
-  > .spinner {
-    display: none;
-  }
-}
-
 body {
   color: #666;
   font-family: 'Roboto', sans-serif;
@@ -77,6 +66,19 @@ body {
   }
 }
 
+.wf-active #app,
+.wf-inactive #app {
+  > *  {
+    transition: 0.5s;
+    opacity: 1;
+  }
+
+  > .spinner {
+    display: none;
+  }
+}
+
+
 header {
   border-bottom: 1px solid #ddd;
   margin-bottom: 24px;
@@ -84,6 +86,7 @@ header {
 
 section {
   min-height: 450px;
+  position: relative;
 }
 
 a {
