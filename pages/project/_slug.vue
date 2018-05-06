@@ -19,8 +19,8 @@
         </div>
         <div class="row">
           <div class="col">
-            <p v-html="projects[0].description"></p>
-            <p><em>{{ projects[0].tags }}</em></p>
+            <div v-html="descriptionHTML" id="description"></div>
+            <em>{{ projects[0].tags }}</em>
           </div>
         </div>
       </div>
@@ -50,6 +50,7 @@
 
 <script>
 import projects from '~/apollo/queries/project.gql'
+import showdown from 'showdown'
 
 export default {
   apollo: {
@@ -81,6 +82,9 @@ export default {
         return `${this.projects[0].title} – ${this.projects[0].type} | %s`
       }
     },
+    descriptionHTML () {
+      return new showdown.Converter().makeHtml(this.projects[0].description)
+    },
     sortedScreenshots () {
       return this.projects[0].screenshots.slice().sort((a, b) => a.name.localeCompare(b.name))
     }
@@ -104,6 +108,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#description {
+  p {
+    margin: 0;
+  }
+}
+</style>
+
 
 <style lang="scss" scoped>
 nav {
@@ -198,6 +211,10 @@ nav {
     & + p {
       margin-top: 16px;
     }
+  }
+
+  em {
+    margin-top: 1rem;
   }
 
   .button {

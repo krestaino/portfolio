@@ -13,7 +13,6 @@
 <script>
 import articles from '~/apollo/queries/article.gql'
 import showdown from 'showdown'
-const converter = new showdown.Converter()
 
 export default {
   apollo: {
@@ -37,7 +36,7 @@ export default {
   },
   computed: {
     bodyHTML () {
-      return converter.makeHtml(this.articles[0].body)
+      return new showdown.Converter().makeHtml(this.articles[0].body)
     },
     documentTitle () {
       if (this.articles.length) {
