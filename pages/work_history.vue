@@ -1,18 +1,16 @@
 <template>
-  <div class="resume">
-    <ul class="jobs">
-      <li v-for="(job, index) in jobs" :key="index">
-        <div class="title">{{ job.title }}</div>
-        <div class="company">{{ job.company }}</div>
-        <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
-        <div class="location">{{ job.location }}</div>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li v-for="(job, index) in jobs" :key="index">
+      <div class="title">{{ job.title }}</div>
+      <div class="company">{{ job.company }}</div>
+      <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
+      <div class="location">{{ job.location }}</div>
+    </li>
+  </ul>
 </template>
 
 <script>
-import allJobs from '~/apollo/queries/allJobs'
+import allJobs from '~/apollo/queries/allJobs.gql'
 
 export default {
   apollo: {
@@ -35,7 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.jobs {
+ul {
   list-style: none;
   padding: 0;
   text-align: center;

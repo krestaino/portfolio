@@ -1,6 +1,5 @@
 {
   projects {
-    _id
     title
     type
     github

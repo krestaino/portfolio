@@ -9,8 +9,10 @@
             </div>
           </div>
           <div class="col buttons">
-            <a class="button" target="_blank" :href="projects[0].github" v-if="projects[0].github">
-              GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
+            <a class="button" target="_blank" :href="'https://github.com/' + projects[0].github" v-if="projects[0].github">
+              <span>GitHub <img src="~/assets/icons/github.svg"></span>
+              <span v-if="githubStars">(&#9733;{{ githubStars }})</span>
+              <span v-if="!githubStars">(&#9733;<span v-if="!githubStars" class="spinner --inline"></span>)</span>
             </a>
             <a class="button" target="_blank" :href="projects[0].url"  v-if="projects[0].url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
           </div>
@@ -36,7 +38,7 @@
         </div>
       </nav>
       <ul class="image">
-        <li class="lazy" v-for="(screenshot, index) in screenshots" :key="index">
+        <li class="lazy" v-for="(screenshot, index) in screenshotListSortedByFilename" :key="index">
           <img v-lazy="'https://portfolio-api.kmr.io' + screenshot.url"/>
           <div class="spinner"></div>
         </li>
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import projects from '~/apollo/queries/project'
+import projects from '~/apollo/queries/project.gql'
 
 export default {
   apollo: {
@@ -56,8 +58,10 @@ export default {
       variables () {
         return { slug: this.$route.params.slug }
       },
-      result () {
-        this.getRepo()
+      result (data) {
+        if (data.data.projects[0].github) {
+          this.getRepo()
+        }
       }
     }
   },
@@ -70,14 +74,13 @@ export default {
   },
   computed: {
     documentTitle () {
-      if (this.projects[0]) {
+      if (this.projects.length) {
         return `${this.projects[0].title} – ${this.projects[0].type} | %s`
       }
     },
-    screenshots () {
-      let screenshots = []
-      screenshots.push(...this.projects[0].screenshots)
-      return screenshots.sort(function (a, b) {
+    screenshotListSortedByFilename () {
+      let arr = []; arr.push(...this.projects[0].screenshots)
+      return arr.sort((a, b) => {
         return a.name.localeCompare(b.name)
       })
     }
@@ -89,15 +92,11 @@ export default {
   },
   methods: {
     getRepo () {
-      if (!this.projects[0].github) {
-        return
-      }
-      let parts = this.projects[0].github.split('/')
-      let slug = parts.pop() || parts.pop() // handle potential trailing slash
-      this.$axios.get(`https://api.github.com/repos/krestaino/${slug}`)
-        .then(response => {
+      this.$axios.get(`https://api.github.com/repos/${this.projects[0].github}`).then(response => {
+        setTimeout(() => {
           this.githubStars = response.data.stargazers_count
-        })
+        }, 333)
+      })
     },
     visibilityChanged (isVisible, entry) {
       this.navIsVisible = !isVisible
@@ -206,8 +205,8 @@ nav {
       margin-left: 16px;
     }
 
-    span {
-      margin-left: 4px;
+    > span:first-child {
+      margin-right: 4px;
     }
   }
 }
@@ -221,10 +220,6 @@ nav {
 
   .lazy img {
     max-height: 450px;
-
-    &[lazy="loaded"] + .spinner {
-      display: none;
-    }
   }
 }
 </style>

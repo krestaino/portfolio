@@ -1,31 +1,42 @@
 <template>
-  <div>
-    <ul class="projects">
-      <li v-for="project in projects" :key="project._id">
-        <article>
-          <router-link tag="a" :to="`/project/${project.slug}`">
-            <span class="hover-text">{{ project.title }}</span>
-            <div class="image-container lazy" v-if="project.thumbnail">
-              <img class="thumb" v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
-              <div class="spinner"></div>
-            </div>
-          </router-link>
-          <div class="details">
-            <h3>{{ project.title }} – {{ project.type }}</h3>
-            <div class="buttons">
-              <a :href="project.github" class="button" target="_blank" v-if="project.github">GitHub <img src="~/assets/icons/github.svg"></a>
-              <a :href="project.url" class="button" target="_blank" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
-              <router-link tag="a" :to="`/project/${project.slug}`" class="button">View Project</router-link>
-            </div>
+  <ul>
+    <li v-for="(project, index) in projects" :key="index">
+      <article>
+        <router-link :to="`/project/${project.slug}`">
+          <figure v-if="project.thumbnail" class="lazy">
+            <img v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
+            <span class="spinner"></span>
+          </figure>
+        </router-link>
+        <div class="details">
+          <h2>{{ project.title }} – {{ project.type }}</h2>
+          <div class="buttons">
+            <a
+              v-if="project.github"
+              :href="'https://github.com/' + project.github"
+              class="button"
+              target="_blank"
+            >
+              GitHub <img src="~/assets/icons/github.svg">
+            </a>
+            <a
+              v-if="project.url"
+              :href="project.url"
+              class="button"
+              target="_blank"
+            >
+              Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg">
+            </a>
+            <router-link :to="`/project/${project.slug}`" class="button">View Project</router-link>
           </div>
-        </article>
-      </li>
-    </ul>
-  </div>
+        </div>
+      </article>
+    </li>
+  </ul>
 </template>
 
 <script>
-import allProjects from '~/apollo/queries/allProjects'
+import allProjects from '~/apollo/queries/allProjects.gql'
 
 export default {
   apollo: {
@@ -43,7 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.projects {
+ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -75,50 +86,23 @@ export default {
       }
     }
 
-    .hover-text {
-      color: #fff;
-      font-size: 28px;
-      font-weight: 100;
-      margin-top: -9px;
-      opacity: 0;
-      padding: 0 16px;
-      position: absolute;
-      text-align: center;
-      transform: translateY(-18px);
-      transition: 0.3s;
-      top: 50%;
-      width: 100%;
-      z-index: 1;
-    }
-
-    .image-container {
+    figure {
       overflow: hidden;
+      margin: 0;
       padding-top: 56.25%;
       position: relative;
 
-      &::after {
-        background-color: rgba(0,0,0,0);
-        border-radius: inherit;
-        content: '';
-        height: 100%;
+      img {
+        display: block;
         left: 0;
         position: absolute;
         top: 0;
-        transition: 0.3s;
-        width: 100%;
-      }
-    }
+        transition: 0.5s;
 
-    .thumb {
-      display: block;
-      left: 0;
-      position: absolute;
-      top: 0;
-      transition: 0.5s;
-
-      &[lazy="loaded"] {
-        & + .spinner {
-          display: none;
+        &[lazy="loaded"] {
+          & + .spinner {
+            display: none;
+          }
         }
       }
     }
@@ -136,7 +120,7 @@ export default {
         text-align: center;
       }
 
-      h3 {
+      h2 {
         flex: 1;
         font-weight: 400;
         margin: 0 8px;
