@@ -37,6 +37,7 @@ module.exports = {
   modules: [
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
     ['@nuxtjs/google-analytics', {
       id: 'UA-93904346-4'
     }]

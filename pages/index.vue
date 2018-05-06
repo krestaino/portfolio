@@ -5,7 +5,7 @@
         <article>
           <router-link :to="`/project/${project.slug}`">
             <figure class="lazy">
-              <img v-lazy="'https://portfolio-api.kmr.io' + project.thumbnail.url"/>
+              <img v-lazy="$store.state.apiUrl + project.thumbnail.url"/>
               <span class="spinner"></span>
             </figure>
           </router-link>
