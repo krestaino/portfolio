@@ -1,7 +1,7 @@
 <template>
   <section>
     <ul v-if="isLoaded">
-      <li v-for="(project, index) in projects" :key="index">
+      <li v-for="(project, index) in sortedProjects" :key="index">
         <article>
           <router-link :to="`/project/${project.slug}`">
             <figure class="lazy">
@@ -49,6 +49,11 @@ export default {
       result () {
         this.isLoaded = true
       }
+    }
+  },
+  computed: {
+    sortedProjects () {
+      return this.projects.slice().sort((a, b) => a.order - b.order)
     }
   },
   data () {

@@ -1,12 +1,13 @@
 {
   projects {
-    title
-    type
     github
-    url
+    order
+    title
     slug
     thumbnail {
       url
     }
+    type
+    url
   }
 }

@@ -101,18 +101,29 @@ a {
   }
 }
 
-h1 {
-  font-size: 28px;
-  font-weight: 300;
-  text-align: center;
+header {
+  h1 {
+    font-size: 28px;
+    font-weight: 300;
+    text-align: center;
+  }
 }
 
 h1, h2, h3 {
   font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 h2 {
   font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1rem;
 }
 
 .button {
