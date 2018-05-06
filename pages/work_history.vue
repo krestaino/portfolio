@@ -12,15 +12,23 @@
 </template>
 
 <script>
+import allJobs from '~/apollo/queries/allJobs'
+
 export default {
-  computed: {
-    jobs () {
-      return this.$store.state.jobs
+  apollo: {
+    jobs: {
+      prefetch: true,
+      query: allJobs
+    }
+  },
+  data () {
+    return {
+      jobs: []
     }
   },
   head () {
     return {
-      titleTemplate: `Experience | %s`
+      titleTemplate: `Work History | %s`
     }
   }
 }

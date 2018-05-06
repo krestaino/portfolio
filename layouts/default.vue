@@ -77,6 +77,11 @@ body {
   max-width: 800px;
 }
 
+
+section {
+  min-height: 450px;
+}
+
 a {
   border-bottom: 1px solid transparent;
   color: #444;
@@ -202,6 +207,7 @@ h1, h2, h3 {
 
 .lazy {
   background-image: url(~/static/images/transp_bg.png);
+  background-attachment: fixed;
 
   img {
     backface-visibility: hidden;

@@ -1,0 +1,10 @@
+{
+  jobs {
+    _id
+    title
+    company
+    from
+    to
+    location
+  }
+}

@@ -1,97 +1,107 @@
 <template>
-  <div class="project" v-if="project">
-    <div class="details">
-      <div class="row">
-        <div class="col">
-          <div>
-            <h2>{{ project.title }}</h2>
+  <section>
+    <div v-if="projects.length">
+      <div class="details">
+        <div class="row" v-observe-visibility="visibilityChanged">
+          <div class="col">
+            <div>
+              <h2>{{ projects[0].title }} – {{ projects[0].type }}</h2>
+            </div>
+          </div>
+          <div class="col buttons">
+            <a class="button" target="_blank" :href="projects[0].github" v-if="projects[0].github">
+              GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
+            </a>
+            <a class="button" target="_blank" :href="projects[0].url"  v-if="projects[0].url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
           </div>
         </div>
-        <div class="col buttons">
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">
-            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
-          </a>
-          <a class="button" target="_blank" :href="project.url"  v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
+        <div class="row">
+          <div class="col">
+            <p v-html="projects[0].description"></p>
+            <p><em>{{ projects[0].tags }}</em></p>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <p v-html="project.description"></p>
-          <p><em>{{ project.tech }}</em></p>
+      <nav :class="{ visible: navIsVisible }">
+        <div class="container">
+          <div>
+            <span>{{ projects[0].title }} – {{ projects[0].type }}</span>
+          </div>
+          <div>
+            <a class="button" target="_blank" :href="projects[0].github" v-if="projects[0].github">
+              GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
+            </a>
+            <a class="button" target="_blank" :href="projects[0].url" v-if="projects[0].url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
+          </div>
         </div>
-      </div>
+      </nav>
+      <ul class="image">
+        <li class="lazy" v-for="(screenshot, index) in screenshots" :key="index">
+          <img v-lazy="'https://portfolio-api.kmr.io' + screenshot.url"/>
+          <div class="spinner"></div>
+        </li>
+      </ul>
     </div>
-    <nav>
-      <div class="container">
-        <div>
-          <span>{{ project.title }}</span>
-        </div>
-        <div>
-          <a class="button" target="_blank" :href="project.github" v-if="project.github">
-            GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
-          </a>
-          <a class="button" target="_blank" :href="project.url" v-if="project.url">Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg"></a>
-        </div>
-      </div>
-    </nav>
-    <ul class="image">
-      <li class="lazy" v-for="(screenshot, index) in screenshots" :key="index">
-        <img v-lazy="'https://portfolio-api.kmr.io' + screenshot.url"/>
-        <div class="spinner"></div>
-      </li>
-    </ul>
-  </div>
+  </section>
 </template>
 
 <script>
-import inView from 'in-view'
+import projects from '~/apollo/queries/project'
 
 export default {
-  async asyncData ({ app, store, params }) {
-    let { data } = await app.$axios.get(`https://portfolio-api.kmr.io/project?slug=${params.slug}`)
-    return { project: data[0] }
+  apollo: {
+    projects: {
+      query: projects,
+      prefetch: ({ route }) => ({ slug: route.params.slug }),
+      variables () {
+        return { slug: this.$route.params.slug }
+      },
+      result () {
+        this.getRepo()
+      }
+    }
   },
   data () {
     return {
+      navIsVisible: false,
       githubStars: null,
-      project: null
+      projects: []
     }
   },
   computed: {
+    documentTitle () {
+      if (this.projects[0]) {
+        return `${this.projects[0].title} – ${this.projects[0].type} | %s`
+      }
+    },
     screenshots () {
-      let screenshots = this.project.screenshots
-      screenshots.sort(function (a, b) {
+      let screenshots = []
+      screenshots.push(...this.projects[0].screenshots)
+      return screenshots.sort(function (a, b) {
         return a.name.localeCompare(b.name)
       })
-      return screenshots
+    }
+  },
+  head () {
+    return {
+      titleTemplate: this.documentTitle
     }
   },
   methods: {
-    async getRepo () {
-      if (!this.project.github) {
+    getRepo () {
+      if (!this.projects[0].github) {
         return
       }
-      let parts = this.project.github.split('/')
+      let parts = this.projects[0].github.split('/')
       let slug = parts.pop() || parts.pop() // handle potential trailing slash
-      let response = await this.$axios.$get(`https://api.github.com/repos/krestaino/${slug}`)
-      this.githubStars = response.stargazers_count
+      this.$axios.get(`https://api.github.com/repos/krestaino/${slug}`)
+        .then(response => {
+          this.githubStars = response.data.stargazers_count
+        })
     },
-    projectNav () {
-      let nav = document.querySelector('.project nav')
-
-      inView('.project .details')
-        .on('enter', el => {
-          nav.classList.remove('visible')
-        })
-        .on('exit', el => {
-          nav.classList.add('visible')
-        })
-      inView.offset(-50)
+    visibilityChanged (isVisible, entry) {
+      this.navIsVisible = !isVisible
     }
-  },
-  mounted () {
-    this.projectNav()
-    this.getRepo()
   }
 }
 </script>

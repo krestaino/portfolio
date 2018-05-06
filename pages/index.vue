@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="projects">
-      <li v-for="project in projects" :key="project.id" v-if="project.id">
+      <li v-for="project in projects" :key="project._id">
         <article>
           <router-link tag="a" :to="`/project/${project.slug}`">
             <span class="hover-text">{{ project.title }}</span>
@@ -25,10 +25,18 @@
 </template>
 
 <script>
+import allProjects from '~/apollo/queries/allProjects'
+
 export default {
-  computed: {
-    projects () {
-      return this.$store.state.projects
+  apollo: {
+    projects: {
+      prefetch: true,
+      query: allProjects
+    }
+  },
+  data () {
+    return {
+      projects: []
     }
   }
 }

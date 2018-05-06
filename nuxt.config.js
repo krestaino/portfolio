@@ -20,7 +20,7 @@ module.exports = {
 
   // Headers of the page
   head: {
-    title: 'Kevin Restaino | Front-end Developer',
+    title: 'Kevin Restaino – Front-end Developer',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -35,6 +35,7 @@ module.exports = {
   loading: { color: '#384D66' },
 
   modules: [
+    '@nuxtjs/apollo',
     '@nuxtjs/axios',
     ['@nuxtjs/google-analytics', {
       id: 'UA-93904346-4'
@@ -43,6 +44,14 @@ module.exports = {
 
   plugins: [
     { src: '~plugins/vue-lazyload', ssr: false },
+    { src: '~plugins/vue-observe-visibility', ssr: false },
     { src: '~plugins/web-font-loader', ssr: false }
-  ]
+  ],
+
+  apollo: {
+    clientConfigs: {
+      default: '~/apollo/client-configs/default.js'
+    },
+    includeNodeModules: true
+  }
 }
