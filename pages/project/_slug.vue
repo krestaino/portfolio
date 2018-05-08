@@ -256,7 +256,7 @@ ul {
     }
   }
 
-  li:last-child {
+  li:last-child:not(:first-child) {
     figure {
       padding-top: 0;
     }
