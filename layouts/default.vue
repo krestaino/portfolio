@@ -215,7 +215,6 @@ h3 {
   transition: 1s;
 
   img {
-    backface-visibility: hidden;
     display: block;
     height: 100%;
     opacity: 0;
