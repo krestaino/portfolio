@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div v-if="projects.length">
+    <div v-if="!$apollo.loading">
       <div class="details">
         <div class="row" v-observe-visibility="visibilityChanged">
           <div class="col">
@@ -37,10 +37,12 @@
           </div>
         </div>
       </nav>
-      <ul class="image">
+      <ul>
         <li class="lazy" v-for="(screenshot, index) in sortedScreenshots" :key="index">
-          <img v-lazy="$store.state.apiUrl + screenshot.url"/>
-          <div class="spinner"></div>
+          <figure>
+            <img v-lazy="$store.state.apiUrl + screenshot.url"/>
+            <span class="spinner"></span>
+          </figure>
         </li>
       </ul>
     </div>
@@ -61,7 +63,6 @@ export default {
         return { slug: this.$route.params.slug }
       },
       result (data) {
-        this.isLoaded = true
         if (data.data.projects[0].github) {
           this.getRepo()
         }
@@ -70,7 +71,6 @@ export default {
   },
   data () {
     return {
-      isLoaded: false,
       navIsVisible: false,
       githubStars: null,
       projects: []
@@ -228,15 +228,42 @@ nav {
   }
 }
 
-.image {
+ul {
   box-shadow: 0px 0px 36px 0px rgba(0,0,0,0.25);
   list-style: none;
   margin: 32px auto 0;
   max-width: 1000px;
   padding: 0;
 
-  .lazy img {
-    max-height: 450px;
+  figure {
+    overflow: hidden;
+    margin: 0;
+    padding-top: 56.25%;
+    position: relative;
+
+    img {
+      display: block;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transition: 0.5s;
+
+      &[lazy="loaded"] {
+        & + .spinner {
+          display: none;
+        }
+      }
+    }
+  }
+
+  li:last-child {
+    figure {
+      padding-top: 0;
+    }
+
+    img {
+      position: relative;
+    }
   }
 }
 </style>
