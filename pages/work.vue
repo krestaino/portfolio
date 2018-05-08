@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul v-if="isLoaded">
+    <ul v-if="!$apollo.loading">
       <li v-for="(job, index) in jobs" :key="index">
         <div class="title">{{ job.title }}</div>
         <div class="company">{{ job.company }}</div>
@@ -19,15 +19,11 @@ export default {
   apollo: {
     jobs: {
       prefetch: true,
-      query: allJobs,
-      result () {
-        this.isLoaded = true
-      }
+      query: allJobs
     }
   },
   data () {
     return {
-      isLoaded: false,
       jobs: []
     }
   },

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div v-if="articles.length">
+    <div v-if="!$apollo.loading">
       <article id="article">
         <h1>{{ articles[0].title }}</h1>
         <div v-html="bodyHTML"></div>
@@ -21,15 +21,11 @@ export default {
       prefetch: ({ route }) => ({ slug: route.params.slug }),
       variables () {
         return { slug: this.$route.params.slug }
-      },
-      result (data) {
-        this.isLoaded = true
       }
     }
   },
   data () {
     return {
-      isLoaded: false,
       navIsVisible: false,
       articles: []
     }

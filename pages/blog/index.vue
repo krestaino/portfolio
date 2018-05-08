@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul v-if="isLoaded">
+    <ul v-if="!$apollo.loading">
       <li v-for="(article, index) in sortedArticles" :key="index">
         <article>
           <router-link :to="`/blog/${article.slug}`" v-if="article.image">
@@ -32,10 +32,7 @@ export default {
   apollo: {
     articles: {
       prefetch: true,
-      query: allArticles,
-      result () {
-        this.isLoaded = true
-      }
+      query: allArticles
     }
   },
   computed: {
@@ -45,7 +42,6 @@ export default {
   },
   data () {
     return {
-      isLoaded: false,
       articles: []
     }
   },
