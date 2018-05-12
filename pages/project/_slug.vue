@@ -20,7 +20,9 @@
         <div class="row">
           <div class="col">
             <div v-html="descriptionHTML" id="description"></div>
-            <em>{{ projects[0].tags }}</em>
+            <em>
+              <span v-for="(tag, index) in projects[0].tags" :key="index">{{ tag.title }}</span>
+            </em>
           </div>
         </div>
       </div>
@@ -215,6 +217,10 @@ nav {
 
   em {
     margin-top: 1rem;
+
+    span + span::before {
+      content: ', '
+    }
   }
 
   .button {
