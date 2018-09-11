@@ -1,7 +1,7 @@
 <template>
   <section>
     <ul v-if="!$apollo.loading">
-      <li v-for="(job, index) in jobs" :key="index">
+      <li v-for="(job, index) in sortedJobs" :key="index">
         <div class="title">{{ job.title }}</div>
         <div class="company">{{ job.company }}</div>
         <div class="timePeriod">{{ job.from }} – {{ job.to }}</div>
@@ -20,6 +20,11 @@ export default {
     jobs: {
       prefetch: true,
       query: allJobs
+    }
+  },
+  computed: {
+    sortedJobs () {
+      return this.jobs.slice().sort((a, b) => a.order - b.order)
     }
   },
   data () {
