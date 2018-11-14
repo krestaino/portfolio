@@ -6,6 +6,8 @@ query ($slug: String!) {
     type
     github
     url
+    appStore,
+    playStore,
     description
     tags {
       title

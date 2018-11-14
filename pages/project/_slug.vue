@@ -4,11 +4,25 @@
       <div class="details">
         <div class="row" v-observe-visibility="visibilityChanged">
           <div class="col">
-            <div>
-              <h2>{{ projects[0].title }} – {{ projects[0].type }}</h2>
-            </div>
+            <h2>{{ projects[0].title }} – {{ projects[0].type }}</h2>
           </div>
           <div class="col buttons">
+            <a
+              v-if="projects[0].appStore"
+              :href="projects[0].appStore"
+              class="store"
+              target="_blank"
+            >
+              <img src="~/assets/icons/app-store.svg">
+            </a>
+            <a
+              v-if="projects[0].playStore"
+              :href="projects[0].playStore"
+              class="store"
+              target="_blank"
+            >
+              <img src="~/assets/icons/google-play.svg">
+            </a>
             <a class="button" target="_blank" :href="'https://github.com/' + projects[0].github" v-if="projects[0].github">
               <span>GitHub <img src="~/assets/icons/github.svg"></span>
               <span v-if="githubStars !== null">(&#9733;{{ githubStars }})</span>
@@ -32,6 +46,22 @@
             <span>{{ projects[0].title }} – {{ projects[0].type }}</span>
           </div>
           <div>
+            <a
+              v-if="projects[0].appStore"
+              :href="projects[0].appStore"
+              class="store"
+              target="_blank"
+            >
+              <img src="~/assets/icons/app-store.svg">
+            </a>
+            <a
+              v-if="projects[0].playStore"
+              :href="projects[0].playStore"
+              class="store"
+              target="_blank"
+            >
+              <img src="~/assets/icons/google-play.svg">
+            </a>
             <a class="button" target="_blank" :href="projects[0].github" v-if="projects[0].github">
               GitHub <img src="~/assets/icons/github.svg"><span v-if="githubStars">(&#9733;{{ githubStars }})</span>
             </a>
@@ -182,7 +212,7 @@ nav {
       margin-top: 16px;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 880px) {
       flex-direction: column;
     }
 
@@ -191,12 +221,33 @@ nav {
       flex-direction: column;
       width: 100%;
 
+      @media (max-width: 880px) {
+        justify-content: center;
+
+        h2 {
+          margin: 0 auto 16px auto;
+        }
+      }
+
       &.buttons {
         flex-direction: row;
+        flex-wrap: wrap;
         justify-content: flex-end;
 
-        @media (max-width: 650px) {
-          justify-content: flex-start;
+        @media (max-width: 880px) {
+          justify-content: center;
+
+          a {
+            margin: 4px;
+          }
+
+          a + a {
+            margin-left: 4px;
+          }
+        }
+
+        a + a {
+          margin-left: 8px;
         }
       }
     }
@@ -270,6 +321,22 @@ ul {
     img {
       position: relative;
     }
+  }
+}
+
+.store {
+  border: none;
+
+  &:hover {
+    img {
+      opacity: 0.85;
+    }
+  }
+  
+  img {
+    display: block;
+    height: 40px;
+    transition: opacity 0.3s;
   }
 }
 </style>
