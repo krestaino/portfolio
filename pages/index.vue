@@ -139,7 +139,7 @@ ul {
       padding: 16px;
       width: 100%;
 
-      @media (max-width: 700px) {
+      @media (max-width: 940px) {
         flex-direction: column;
         text-align: center;
       }
@@ -149,7 +149,7 @@ ul {
         font-weight: 400;
         margin: 0 8px;
 
-        @media (max-width: 700px) {
+        @media (max-width: 940px) {
           margin-bottom: 8px;
         }
       }
@@ -157,29 +157,45 @@ ul {
       .buttons {
         display: flex;
         
-        @media (max-width: 700px) {
-          flex-direction: column;
+        @media (max-width: 940px) {
           justify-content: center;
+          flex-wrap: wrap;
         }
       }
 
-      .button {
+      a {
         display: inline-flex;
-        margin-left: 8px;
 
-        @media (max-width: 700px) {
-          display: flex;
+        & + a {
+          margin-left: 8px;
+        }
+
+        @media (max-width: 940px) {
+          margin: 4px;
+          width: 135px;
+
+          & + a {
+            margin-left: 4px;
+          }
+
+          display: inline-flex;
           justify-content: center;
         }
       }
 
       .store {
         border: none;
-        margin-left: 8px;
 
+        &:hover {
+          img {
+            opacity: 0.85;
+          }
+        }
+        
         img {
           display: block;
           height: 40px;
+          transition: opacity 0.3s;
         }
       }
     }
