@@ -133,6 +133,7 @@ h3 {
   border-radius: 3px;
   color: #777;
   display: inline-flex;
+  height: 40px;
   padding: 8px 16px;
   position: relative;
   font-size: 12px;
