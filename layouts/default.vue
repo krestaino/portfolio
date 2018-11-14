@@ -59,7 +59,7 @@ body {
 
 #app {
   margin: auto;
-  max-width: 800px;
+  max-width: 900px;
 
   > * {
     opacity: 0;

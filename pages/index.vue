@@ -13,6 +13,22 @@
             <h2>{{ project.title }} – {{ project.type }}</h2>
             <div class="buttons">
               <a
+                v-if="project.appStore"
+                :href="project.appStore"
+                class="store"
+                target="_blank"
+              >
+                <img src="~/assets/icons/app-store.svg">
+              </a>
+              <a
+                v-if="project.playStore"
+                :href="project.playStore"
+                class="store"
+                target="_blank"
+              >
+                <img src="~/assets/icons/google-play.svg">
+              </a>
+              <a
                 v-if="project.github"
                 :href="'https://github.com/' + project.github"
                 class="button"
@@ -28,7 +44,7 @@
               >
                 Visit Site <img src="~/assets/icons/ic_open_in_new_black_24px.svg">
               </a>
-              <router-link :to="`/project/${project.slug}`" class="button">View Project</router-link>
+              <router-link :to="`/project/${project.slug}`" class="button">Read More</router-link>
             </div>
           </div>
         </article>
@@ -139,8 +155,9 @@ ul {
       }
 
       .buttons {
+        display: flex;
+        
         @media (max-width: 700px) {
-          display: flex;
           flex-direction: column;
           justify-content: center;
         }
@@ -148,19 +165,21 @@ ul {
 
       .button {
         display: inline-flex;
+        margin-left: 8px;
 
         @media (max-width: 700px) {
           display: flex;
           justify-content: center;
         }
+      }
 
-        & + .button {
-          margin-left: 8px;
+      .store {
+        border: none;
+        margin-left: 8px;
 
-          @media (max-width: 700px) {
-            margin-left: 0;
-            margin-top: 8px;
-          }
+        img {
+          display: block;
+          height: 40px;
         }
       }
     }
