@@ -1,4 +1,4 @@
-{
+query {
   projects {
     github
     order
@@ -8,6 +8,8 @@
       url
     }
     type
-    url
+    url,
+    appStore,
+    playStore
   }
 }

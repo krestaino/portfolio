@@ -13,19 +13,19 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/apollo": "^3.0.6",
-    "@nuxtjs/axios": "^4.5.2",
+    "@nuxtjs/apollo": "^4.0.0-rc2",
+    "@nuxtjs/axios": "^5.3.2",
     "@nuxtjs/google-analytics": "^2.0.2",
     "apollo-link-http": "^1.5.4",
     "apollo-link-ws": "^1.0.8",
     "apollo-utilities": "^1.0.12",
     "date-fns": "^1.29.0",
-    "graphql": "^0.13.2",
+    "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
-    "nuxt": "1.4.0",
+    "nuxt": "^2.0.0",
     "showdown": "^1.8.6",
     "subscriptions-transport-ws": "^0.9.8",
-    "vue-observe-visibility": "^0.3.1"
+    "vue-observe-visibility": "^0.4.1"
   },
   "config": {
     "nuxt": {
@@ -35,20 +35,20 @@
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.1.1",
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.16.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-loader": "^1.9.0",
+    "babel-eslint": "^9.0.0",
+    "eslint": "^5.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^2.1.1",
     "eslint-plugin-html": "^4.0.1",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.1",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "node-sass": "^4.7.2",
-    "normalize.css": "^7.0.0",
-    "sass-loader": "^6.0.6",
+    "normalize.css": "^8.0.0",
+    "sass-loader": "^7.1.0",
     "vue-lazyload": "^1.1.4",
     "webfontloader": "^1.6.28",
-    "webpack": "^3.10.0"
+    "webpack": "^4.19.1"
   }
 }
