@@ -14,11 +14,19 @@ nav {
   justify-content: center;
   margin: 9px auto 26px;
 
+  @media (max-width: 767px) {
+    margin-bottom: 16px;
+  }
+
   a {
     border-bottom: 1px solid transparent;
     color: #888;
     font-weight: 300;
     transition: 0.3s;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+    }
 
     &:hover {
       border-bottom: 1px solid;

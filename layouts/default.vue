@@ -55,6 +55,10 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 767px) {
+    padding: 16px;
+  }
 }
 
 #app {
@@ -106,6 +110,11 @@ header {
     font-size: 28px;
     font-weight: 300;
     text-align: center;
+
+    @media (max-width: 767px) {
+      margin-bottom: 16px;
+      margin-top: 8px;
+    }
   }
 }
 
@@ -165,6 +174,10 @@ h3 {
   justify-content: center;
   margin-top: 36px;
   text-align: center;
+
+   @media (max-width: 767px) {
+    margin-top: 16px;
+  }
 
   span {
     color: #bbb;

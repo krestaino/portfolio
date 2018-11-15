@@ -89,6 +89,10 @@ ul {
     
     & + li {
       margin-top: 36px;
+
+      @media (max-width: 767px) {
+        margin-top: 16px;
+      }
     }
   }
 
@@ -139,6 +143,10 @@ ul {
       padding: 16px;
       width: 100%;
 
+      @media (max-width: 767px) {
+        padding: 12px;
+      }
+
       @media (max-width: 940px) {
         flex-direction: column;
         text-align: center;
@@ -151,6 +159,10 @@ ul {
 
         @media (max-width: 940px) {
           margin-bottom: 8px;
+        }
+
+        @media (max-width: 767px) {
+          font-size: 18px;
         }
       }
 
