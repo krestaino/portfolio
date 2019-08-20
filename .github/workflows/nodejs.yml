@@ -17,8 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install and build
+    - name: install dependencies and build nuxt
       run: |
         npm install
         npm run build
-        npm start
+    - name: serve nuxt
+      if: success
+      run: npm start
