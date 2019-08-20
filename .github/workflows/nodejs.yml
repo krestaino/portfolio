@@ -22,5 +22,5 @@ jobs:
         npm install
         npm run build
     - name: serve nuxt
-      if: success
+      if: success()
       run: npm start
