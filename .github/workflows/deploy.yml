@@ -17,19 +17,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install dependencies and build nuxt
-      run: |
-        npm install
-        npm run build
-    - name: serve nuxt
-      if: success()
-      run: |
-        action "Run deploy script" {
-          uses = "maddox/actions/ssh@master"
-          args = "/opt/deploy/run"
-          secrets = [
-            "PRIVATE_KEY",
-            "HOST",
-            "USER"
-          ]
-        }
+#     - name: install dependencies and build nuxt
+#       run: |
+#         npm install
+#         npm run build
+#     - name: serve nuxt
+#       if: success()
+      action "Run deploy script" {
+        uses = "maddox/actions/ssh@master"
+        args = "/opt/deploy/run"
+        secrets = [
+          "PRIVATE_KEY",
+          "HOST",
+          "USER"
+        ]
+      }
