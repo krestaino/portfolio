@@ -24,7 +24,8 @@ jobs:
       - name: SSH Commands
         uses: maddox/actions/ssh@master
 #       if: success()
-        args: whoami
+        args:
+          - 'whoami'
         env:
           PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----
 MIIEpQIBAAKCAQEAqwYKqngx+CcoVHSgt8PBLJtg9q3uZV2LEEPFS/U8vKJZZvmq
