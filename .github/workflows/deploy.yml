@@ -18,11 +18,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: install dependencies and build nuxt
-      run: |
-        npm install
-        npm run build
+#       run: |
+#         npm install
+#         npm run build
     - name: serve nuxt
-      if: success()
+#       if: success()
       uses: joelwmale/webhook-action@master
       env:
         data: "{'deployment': 'finished', 'project': 'actions'}"
