@@ -25,6 +25,5 @@ jobs:
       if: success()
       uses: joelwmale/webhook-action@master
       env:
-        WEBHOOK_URL: 'https://webhook.site/3606bb66-1e9e-4441-84d6-fa39efe96fdd'
-      with:
-        data: "Hello from github actions!"
+        data: "{'deployment': 'finished', 'project': 'actions'}"
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
