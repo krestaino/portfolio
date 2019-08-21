@@ -21,9 +21,37 @@ jobs:
 #       run: |
 #         npm install
 #         npm run build
-    - name: serve nuxt
+      - name: SSH Commands
+        uses: maddox/actions/ssh@master
 #       if: success()
-      uses: joelwmale/webhook-action@master
-      env:
-        data: "{'deployment': 'finished', 'project': 'actions'}"
-        WEBHOOK_URL: "https://webhook.site/3606bb66-1e9e-4441-84d6-fa39efe96fdd"
+        args: whoami
+        env:
+          PRIVATE_KEY: "-----BEGIN RSA PRIVATE KEY-----
+MIIEpQIBAAKCAQEAqwYKqngx+CcoVHSgt8PBLJtg9q3uZV2LEEPFS/U8vKJZZvmq
+wxMrVQ830f0VqryMlQX/rOewWXdwlS4wiH75JzoQR9T6W5drwdtKkC3yKteenwqi
+RRWftGbAoK180XAyMAZS+MP1np2acVLqqKon+ao0vxE3TPFJu/vkZylbQQxNjj6h
+fIZSsP/DAZqaKjk3420Cg3dl6ZfoiPhJelkPWJT84Ev8iF60uA767/WtPXrQC7i2
+t0QPPYtHGDiMjAoCVzS//r25/oLsjD7gvPNZ0tMcc3YzHxEK0aiSZv+ZJWmvzTkH
+Qzq5+ZyTTFOEVtI73GJqFlI/4yUivJhbSZo+jQIDAQABAoIBAH7P7Qq4Mz0xM9tj
+22RHl66OzBg9oh6xfRMjXWFUR6QLscUEbdVWGnRo41gmlHFUe91oZEv+RCoiwW0s
+obokhHTMvhO1XaqancFR7Hj6SK3x0eFWDjqxrQkkg8LgwUO/MMeheNaS30as0D8l
+X3CPMzMSPShMCLhZ1fW48oR4Cv0wfuCisf1v18piGBwB8V1Yb7QzEklwgkYwMDEC
+XwYbkw1b0hQjB5ZaieX0MMcFK8T4Kipx6iOjCr6OcxOYPctesBd8eCX/8bv36E14
+16e2f9S7hy50+08nURJGmR1yJodRYb+nhupSUJTHuaXzDaGRg6XRS417TMawg3p7
+B580aiECgYEA0/MKQmGnjFIdWLN5BZIwBrD3B80JSOVs+jPHkNE+lZVhSD3qS4Hs
+cspoUdVQMlx3Z6dNSyHgYNud6e4iqoh58GXxpzOQr52uW+KGTpF8v3YxjOqTK47k
+bwUMHFocxMKHJej4THRAkFtG7XVlKejwDAbJ7Kt1OcFbABmmLOw/lzkCgYEAzpGC
+JTrLnSWojcpFphEBu315Oicf/BOt+1gBeODDJYmeJ4fBo74Rc2s8M0iQFm7Ctdr/
+T9guimCtev3j6d2GaU56Gi/tMtu23iYA7T2W+5JU3n9QX8Esl3M0MbaUGAEW8y7+
+hftCUb6djd8qpI7FZrRVZ6P8RG0wfKwm4G71rfUCgYEAz0KQWr+SD2bRKcc/ZlJB
+QpnUx70aAj3QJo9x7MyhbbdJDVL2hWYEqXADOVrmdIj1ftgcfocfGrhIINTs82RI
+Eewutjl3mDQSp+nJOpWMrtHOvKU6y1KNUX9XC3aXQVWUwV6jSGg6JrALmPO+vI/8
+BVayKQy1sofBDEUIuk9AFAkCgYEArTIZYefDMtaRVZkj/pJB1pbkntqRGcTSWmw2
+h8hENuQFA/XyaL0DWretuP39OaHShbHB4YtLsmBO9FGN19cSTJctD2nhwoOv9uD8
+Y+4A+pt9pzQuCqsoHS/NsmT4FIxNVsavR10dBPcCmSJlWaYPYwaOmSBIcoLuZYnd
+6s1+FkUCgYEAyGBRqoYgwHi6ah2KjN9E5BLqJybR9M+WkGrtnpwlYqiT/lTTWqRB
+WG7p90XzzkkYR9JRI0iACgmbWethOvBabBNfxqtfw5KVmSh9aOt65vGcSgBmm8aT
+bnDQiBi3SZA7C3vxyK4ozJUiO6STV3su1jCKSkIWttyAigw7qs+F0sE=
+-----END RSA PRIVATE KEY-----"
+          HOST: kmr.io
+          USER: github
