@@ -23,7 +23,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "nuxt": "^2.3.4",
-    "showdown": "^1.9.0",
+    "showdown": "^1.9.1",
     "subscriptions-transport-ws": "^0.9.8",
     "vue-observe-visibility": "^0.4.3"
   },
